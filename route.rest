@@ -1,0 +1,28 @@
+GET http://localhost:3000/posts
+
+
+###
+
+
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+    "id":3,
+    "postedBy":2,
+    "likes":96,
+    "title": "My third post",
+    "postType": "Article"
+}
+
+
+###
+
+
+GET http://localhost:3000/posts/3
+
+
+###
+
+
+DELETE http://localhost:3000/posts/3

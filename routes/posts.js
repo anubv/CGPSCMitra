@@ -46,10 +46,10 @@ postsRouter.post('/', async (req, res) => {
     try {
         const lastPost = await Post.find().limit(1).sort({$natural: -1})
         let PostId
-        //PostId=lastPost[0].id + 1
+        PostId=lastPost[0].id + 1
         
         const post = new Post({
-            id: 0,
+            id: PostId,
             postedBy: req.body.postedBy,
             likes: req.body.likes,
             title: req.body.title,

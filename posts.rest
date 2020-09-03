@@ -1,10 +1,10 @@
-POST http://localhost:3000/posts
+POST https://cgpscmitra.herokuapp.com/posts
 Content-Type: application/json
 
 {
     "postedBy":3,
-    "title": "My second birthdy post",
-    "description": "This is a good post for a second"
+    "title": "My first birthdy post",
+    "description": "This is a good post for a starter"
 }
 
 ###
@@ -13,7 +13,7 @@ GET http://localhost:3000/posts?from=2&limit=2
 
 ###
 
-http://localhost:3000/posts
+http://cgpscmitra.herokuapp.com/posts
 
 ###
 

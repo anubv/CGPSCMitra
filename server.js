@@ -31,7 +31,7 @@ const postsRouter = require('./routes/posts')
 app.use('/posts', postsRouter)
 
 
-app.listen(3000, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log("listening to port 3000")
 })
 

@@ -1,12 +1,22 @@
 const express = require('express')
 const Post = require('../models/Posts')
 const postsRouter = express.Router();
+const User = require('../models/User')
 
 //get
 postsRouter.get('/', async (req, res) => {
     let posts
     try {
-        posts = await Post.find().limit(parseInt(req.query.limit)).sort({ x: -1 })
+        const from = req.query.from
+        if (from == -1 || from == null)
+            posts = await Post.find().limit(parseInt(req.query.limit)).sort({ x: -1 })
+        else
+            posts = await Post.find({
+                id: {
+                    $lt: from
+                }
+            }).limit(parseInt(req.query.limit)).sort({ $natural: -1 })
+
         if (posts == null) {
             return res.status(404).json({ message: "No posts exist" })
         }
@@ -17,33 +27,55 @@ postsRouter.get('/', async (req, res) => {
 })
 
 //get one 
-postsRouter.get('/:id', getPost, (req, res) => {
-    res.json(res.post)
-})
-
-//posts
-postsRouter.post('/', async (req, res) => {
-
-    const post = new Post({
-        id: req.body.id,
-        postedBy: req.body.postedBy,
-        likes: req.body.likes,
-        title: req.body.title,
-        postType: req.body.postType
-    })
+postsRouter.get('/:id', getPost, async (req, res) => {
+    const post = res.post[0]
+    const usrId = post.postedBy
     try {
-        const tempPost = await post.save()
-        res.status(200).json(tempPost)
+        const usr = await User.find({ id: usrId })
+        if (usr == null) return res.status(400)
+        post.title = usr[0].name
+        res.json(post)
     } catch (error) {
         res.status(500).json(error)
     }
 })
 
+//posts
+postsRouter.post('/', async (req, res) => {
+
+    try {
+        const lastPost = await Post.find().limit(1).sort({$natural: -1})
+        let PostId
+        PostId=lastPost[0].id + 1
+        
+        const post = new Post({
+            id: PostId,
+            postedBy: req.body.postedBy,
+            likes: req.body.likes,
+            title: req.body.title,
+            description: req.body.description
+        })        
+   
+         const tempPost = await post.save()
+   
+        if(tempPost==null)
+            res.send(500).json("could not create post")
+        else
+        res.status(200).json(tempPost)
+   
+    } catch (error) {
+        res.status(500).json({
+            message: "error occured",
+            error: error.message
+        })
+    }
+})
+
 //deleteOne
-postsRouter.delete('/:id',  async (req, res) => {
+postsRouter.delete('/:id', async (req, res) => {
     try {
         let post
-        post = await Post.find({id: req.params.id}).remove()
+        post = await Post.find({ id: req.params.id }).remove()
         res.status(200).send('Deleted post')
     } catch (error) {
         res.status(500).json(error.message)

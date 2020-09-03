@@ -1,4 +1,3 @@
-const app = require('express').express()
 const mongoose = require('mongoose')
 const Post = require('./Posts')
 
@@ -7,6 +6,7 @@ const userSchema = new mongoose.Schema({
     id: {
         type: Number,
         unique: true,
+        default: 0,
         required: true
     },
     name: {
@@ -15,27 +15,24 @@ const userSchema = new mongoose.Schema({
     },
     username: {
         type: String,
-        required: true,
-        unique: true
+    },
+    phone: {
+        type: Number,
     },
     email: {
         type: String,
-        unique: true
     },
     password: {
         type: String
     },
     googleId: {
         type: String,
-        unique: true
     },
     facebookId: {
         type: String,
-        unique: true
     },
     twitterId: {
         type: String,
-        unique: true
     },
     points: {
         type: Number,
@@ -44,7 +41,7 @@ const userSchema = new mongoose.Schema({
     postsId: {
         type: [Number]
     },
-    savedPostsId:{
+    savedPostsId: {
         type: [Number]
     }
 })

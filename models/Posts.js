@@ -29,15 +29,15 @@ const postSchema = new mongoose.Schema({
     },
     postType: {
         type: String,
-        required: true
+        default: "Article"
     },
     image: {
         type: Buffer,
         contentType: String
     },
-    link: { 
+    link: {
         type: String
-     },
+    },
     description: {
         type: String
     }

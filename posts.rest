@@ -1,0 +1,22 @@
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+    "postedBy":3,
+    "title": "My second birthdy post",
+    "description": "This is a good post for a second"
+}
+
+###
+
+GET http://localhost:3000/posts?from=2&limit=2
+
+###
+
+http://localhost:3000/posts
+
+###
+
+GET http://localhost:3000/posts/3
+
+###

@@ -1,28 +1,15 @@
-GET http://localhost:3000/posts
-
-
-###
-
-
-POST http://localhost:3000/posts
+POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "id":3,
-    "postedBy":2,
-    "likes":96,
-    "title": "My third post",
-    "postType": "Article"
+    "name": "User2"
 }
 
 
 ###
 
-
-GET http://localhost:3000/posts/3
-
+http://localhost:3000/users
 
 ###
 
-
-DELETE http://localhost:3000/posts/3
+DELETE http://localhost:3000/users/1

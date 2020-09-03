@@ -1,5 +1,3 @@
-if (app.get('env') == 'development'){ require('dotenv').config(); }
-
 
 const express = require('express')
 const app = express()
@@ -10,7 +8,7 @@ app.use(express.json())
 
 
 //database
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true})
+mongoose.connect(process.env.MONGODB_URI , { useNewUrlParser: true})
 const db = mongoose.connection
 db.on('error', (error)=> {
     console.log(error)

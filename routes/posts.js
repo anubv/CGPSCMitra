@@ -28,17 +28,10 @@ postsRouter.get('/', async (req, res) => {
 
 //get one 
 postsRouter.get('/:id', getPost, async (req, res) => {
-    const post = res.post[0]
-    const usrId = post.postedBy
-    try {
-        const usr = await User.find({ id: usrId })
-        if (usr == null) return res.status(400)
-        post.title = usr[0].name
-        res.json(post)
-    } catch (error) {
-        res.status(500).json(error)
-    }
+    if(res.post!=null)
+    res.json(res.post)
 })
+
 
 //posts
 postsRouter.post('/', async (req, res) => {

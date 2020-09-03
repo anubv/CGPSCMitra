@@ -3,13 +3,13 @@ Content-Type: application/json
 
 {
     "postedBy":3,
-    "title": "My first birthdy post",
-    "description": "This is a good post for a starter"
+    "title": "now or never post",
+    "description": "dont wait for magic to happen"
 }
 
 ###
 
-GET http://localhost:3000/posts?from=2&limit=2
+GET https://cgpscmitra.herokuapp.com/posts?from=4&limit=2
 
 ###
 
@@ -17,6 +17,6 @@ http://cgpscmitra.herokuapp.com/posts
 
 ###
 
-GET http://localhost:3000/posts/3
+GET https://cgpscmitra.herokuapp.com/posts/4
 
 ###

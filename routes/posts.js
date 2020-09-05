@@ -43,18 +43,18 @@ postsRouter.post('/', async (req, res) => {
         
         const post = new Post({
             id: PostId,
-            postedBy: req.body.postedBy,
+            postedBy: 0,
             likes: req.body.likes,
             title: req.body.title,
-            description: req.body.description
+            description: "req.body.description"
         })        
    
          const tempPost = await post.save()
    
         if(tempPost==null)
-            res.send(500).json("could not create post")
+            res.send(400).json("could not create post")
         else
-        res.status(200).json(tempPost)
+        res.status(201).json(tempPost)
    
     } catch (error) {
         res.status(500).json({

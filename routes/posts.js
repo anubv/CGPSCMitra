@@ -43,10 +43,10 @@ postsRouter.post('/', async (req, res) => {
         
         const post = new Post({
             id: PostId,
-            postedBy: 0,
+            postedBy: req.body.postedBy,
             likes: req.body.likes,
             title: req.body.title,
-            description: "req.body.description"
+            description: req.body.description
         })        
    
          const tempPost = await post.save()

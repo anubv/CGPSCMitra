@@ -15,7 +15,7 @@ postsRouter.get('/', async (req, res) => {
                 id: {
                     $lt: from
                 }
-            }).limit(parseInt(req.query.limit)).sort({ $natural: 1 })
+            }).limit(parseInt(req.query.limit)).sort({ $natural: -1 })
 
         if (posts == null) {
             return res.status(404).json({ message: "No posts exist" })

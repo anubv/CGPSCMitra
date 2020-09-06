@@ -9,13 +9,13 @@ postsRouter.get('/', async (req, res) => {
     try {
         const from = req.query.from
         if (from == -1 || from == null)
-            posts = await Post.find().limit(parseInt(req.query.limit)).sort({ x: -1 })
+            posts = await Post.find().limit(parseInt(req.query.limit)).sort({ x: 1 })
         else
             posts = await Post.find({
                 id: {
                     $lt: from
                 }
-            }).limit(parseInt(req.query.limit)).sort({ $natural: -1 })
+            }).limit(parseInt(req.query.limit)).sort({ $natural: 1 })
 
         if (posts == null) {
             return res.status(404).json({ message: "No posts exist" })

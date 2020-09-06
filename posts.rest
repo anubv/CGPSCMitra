@@ -9,7 +9,7 @@ Content-Type: application/json
 
 ###
 
-GET https://cgpscmitra.herokuapp.com/posts?from=4&limit=2
+GET https://cgpscmitra.herokuapp.com/posts?from=6&limit=8
 
 ###
 

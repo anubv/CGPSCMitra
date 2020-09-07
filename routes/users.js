@@ -32,6 +32,7 @@ usersRouter.post('/', async (req, res) => {
         const user = new User({
             id: 0,
             name: req.body.name,
+            username: req.body.username,
             password: req.body.password
         })
         const tempUser = await user.save()

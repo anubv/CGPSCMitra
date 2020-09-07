@@ -30,8 +30,9 @@ usersRouter.post('/', async (req, res) => {
         const tempUsers = await User.find().limit(1).sort({$natural: -1})
         const tempUserId = tempUsers[0].id + 1
         const user = new User({
-            id: tempUserId,
-            name: req.body.name
+            id: 0,
+            name: req.body.name,
+            password: req.body.password
         })
         const tempUser = await user.save()
         res.status(200).json(tempUser)

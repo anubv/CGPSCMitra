@@ -15,6 +15,8 @@ const userSchema = new mongoose.Schema({
     },
     username: {
         type: String,
+        required: true,
+        unique: true
     },
     phone: {
         type: Number,
@@ -36,7 +38,7 @@ const userSchema = new mongoose.Schema({
     },
     points: {
         type: Number,
-        min: 0
+        default: 0
     },
     postsId: {
         type: [Number]

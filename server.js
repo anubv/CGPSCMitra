@@ -8,18 +8,23 @@ app.use(express.json())
 
 
 //database
-mongoose.connect(process.env.MONGODB_URI , { useNewUrlParser: true})
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/LocalCGPSCMitra", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+})
+
 const db = mongoose.connection
-db.on('error', (error)=> {
+db.on('error', (error) => {
     console.log(error)
 })
-db.once('open', ()=>{
+db.once('open', () => {
     console.log('Connected to mongoDb')
 })
 
 
 //routes
-app.get('/', (req,res)=>{
+app.get('/', (req, res) => {
     res.send('aao aao')
 })
 
@@ -30,7 +35,7 @@ const postsRouter = require('./routes/posts')
 app.use('/posts', postsRouter)
 
 
-app.listen(process.env.PORT, ()=>{
+app.listen(process.env.PORT || 3000, () => {
     console.log("listening to port 3000")
 })
 
